@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>知识库问答系统</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        .main-container {
+            display: flex;
+            gap: 20px;
+        }
+        .upload-container {
+            width: 300px;
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            background-color: #f9f9f9;
+        }
+        .chat-section {
+            flex-grow: 1;
+        }
+        .chat-container {
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            padding: 20px;
+            margin-bottom: 20px;
+            height: 400px;
+            overflow-y: auto;
+        }
+        .message {
+            margin-bottom: 10px;
+            padding: 10px;
+            border-radius: 5px;
+        }
+        .user-message {
+            background-color: #e3f2fd;
+            margin-left: 20%;
+        }
+        .ai-message {
+            background-color: #f5f5f5;
+            margin-right: 20%;
+        }
+        .search-result {
+            background-color: #fff3e0;
+            margin-right: 20%;
+            padding: 15px;
+        }
+        .search-item {
+            border: 1px solid #ffe0b2;
+            border-radius: 4px;
+            padding: 10px;
+            margin-bottom: 10px;
+            background-color: #fff;
+        }
+        .search-item h4 {
+            margin: 0 0 8px 0;
+            color: #f57c00;
+        }
+        .search-item p {
+            margin: 5px 0;
+        }
+        .search-meta {
+            font-size: 12px;
+            color: #666;
+            margin-top: 5px;
+        }
+        .similarity-score {
+            color: #4CAF50;
+            font-weight: bold;
+        }
+        .input-container {
+            display: flex;
+            gap: 10px;
+        }
+        #question {
+            flex-grow: 1;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        button {
+            padding: 10px 20px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
+        .upload-area {
+            border: 2px dashed #ccc;
+            border-radius: 5px;
+            padding: 20px;
+            text-align: center;
+            margin-bottom: 15px;
+            cursor: pointer;
+        }
+        .upload-area:hover {
+            border-color: #4CAF50;
+            background-color: #f0f9f0;
+        }
+        .upload-area p {
+            margin: 0;
+            color: #666;
+        }
+        .file-list {
+            margin-top: 15px;
+        }
+        .file-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 8px;
+            background-color: #fff;
+            border: 1px solid #eee;
+            border-radius: 4px;
+            margin-bottom: 5px;
+        }
+        .file-item button {
+            padding: 4px 8px;
+            font-size: 12px;
+            background-color: #ff4444;
+        }
+        .file-item button:hover {
+            background-color: #cc0000;
+        }
+        #fileInput {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <h1>知识库问答系统</h1>
+    <div class="main-container">
+        <div class="upload-container">
+            <h2>文件上传</h2>
+            <div class="upload-area" onclick="document.getElementById('fileInput').click()">
+                <p>点击或拖拽文件到此处上传</p>
+                <p style="font-size: 12px; color: #999;">支持 PDF、TXT、DOCX、JSON 等格式,限制文件大小为16MB</p>
+            </div>
+            <input type="file" id="fileInput" multiple accept=".pdf,.txt,.docx">
+            <div class="file-list" id="fileList"></div>
+        </div>
+        
+        <div class="chat-section">
+            <div class="chat-container" id="chatContainer"></div>
+            <div class="input-container">
+                <input type="text" id="question" placeholder="请输入您的问题...">
+                <button onclick="sendQuestion()">发送</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function addMessage(message, isUser, isSearchResult = false) {
+            const chatContainer = document.getElementById('chatContainer');
+            const messageDiv = document.createElement('div');
+             console.log("---------2-------")
+            if (isSearchResult) {
+                console.log("-------3---------")
+                console.log('addMessage', message);
+                messageDiv.className = 'message search-result';
+                try {
+                    const searchData = JSON.parse(message);
+                    let htmlContent = '';
+                    
+                    searchData.forEach(item => {
+                        htmlContent += `
+                            <div class="search-item">
+                                <h4>${item.question}</h4>
+                                <p>${item.answer}</p>
+                                <div class="search-meta">
+                                    <span class="similarity-score">相似度: ${(item.similarity_score * 100).toFixed(2)}%</span>
+                                    <span> | 来源: ${item.source}</span>
+                                    <span> | 类型: ${item.type}</span>
+                                </div>
+                            </div>
+                        `;
+                    });
+                    
+                    messageDiv.innerHTML = htmlContent;
+                } catch (e) {
+                    messageDiv.textContent = message;
+                }
+            } else {
+                messageDiv.className = `message ${isUser ? 'user-message' : 'ai-message'}`;
+                messageDiv.textContent = message;
+            }
+            
+            chatContainer.appendChild(messageDiv);
+            chatContainer.scrollTop = chatContainer.scrollHeight;
+        }
+
+        function sendQuestion() {
+            const questionInput = document.getElementById('question');
+            const question = questionInput.value.trim();
+            
+            if (question) {
+                addMessage(question, true);
+                questionInput.value = '';
+
+                fetch('/query', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({ question: question })
+                })
+                .then(response => response.json())
+                .then(data => {
+                    console.log(data);
+                    if (data.status === 'error') {
+                        addMessage('错误: ' + data.message, false);
+                    } else if (data.status === 'not_found') {
+                        addMessage('未找到相关答案', false);
+                    } else if (data.status === 'success') {
+                        // 显示搜索结果
+                        console.log('1-------------')
+                        if (data.results && data.results.length > 0) {
+                            addMessage(JSON.stringify(data.results), false, true);
+                        }
+                    }
+                })
+                .catch(error => {
+                    addMessage('发生错误: ' + error, false);
+                });
+            }
+        }
+
+        // 支持按Enter键发送消息
+        document.getElementById('question').addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                sendQuestion();
+            }
+        });
+
+        // 文件上传相关功能
+        const fileInput = document.getElementById('fileInput');
+        const fileList = document.getElementById('fileList');
+        const uploadArea = document.querySelector('.upload-area');
+
+        // 处理文件拖放
+        uploadArea.addEventListener('dragover', (e) => {
+            e.preventDefault();
+            uploadArea.style.borderColor = '#4CAF50';
+        });
+
+        uploadArea.addEventListener('dragleave', (e) => {
+            e.preventDefault();
+            uploadArea.style.borderColor = '#ccc';
+        });
+
+        uploadArea.addEventListener('drop', (e) => {
+            e.preventDefault();
+            uploadArea.style.borderColor = '#ccc';
+            const files = e.dataTransfer.files;
+            handleFiles(files);
+        });
+
+        // 处理文件选择
+        fileInput.addEventListener('change', (e) => {
+            handleFiles(e.target.files);
+        });
+
+        function handleFiles(files) {
+            Array.from(files).forEach(file => {
+                uploadFile(file);
+            });
+        }
+
+        function uploadFile(file) {
+            const formData = new FormData();
+            formData.append('file', file);
+
+            // 添加文件到列表
+            const fileItem = document.createElement('div');
+            fileItem.className = 'file-item';
+            fileItem.innerHTML = `
+                <span>${file.name}</span>
+                <button onclick="this.parentElement.remove()">删除</button>
+            `;
+            fileList.appendChild(fileItem);
+
+            // 上传文件到服务器
+            fetch('/upload', {
+                method: 'POST',
+                body: formData
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.error) {
+                    addMessage('文件上传失败: ' + data.error, false);
+                    fileItem.remove();
+                } else {
+                    addMessage(`文件 "${file.name}" 上传成功`, false);
+                }
+            })
+            .catch(error => {
+                addMessage('文件上传错误: ' + error, false);
+                fileItem.remove();
+            });
+        }
+    </script>
+</body>
+</html> 

@@ -1,0 +1,4 @@
+LEARNING_RATE = 0.01
+
+SPEC_TOKENS = ['<PAD>','<UNK>',"<SOS>","<EOS>"]
+EOS_TOKEN = "<EOS>"

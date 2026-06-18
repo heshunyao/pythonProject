@@ -1,0 +1,22 @@
+[
+    {
+        "question": "什么是MySQL的主键？",
+        "answer": "主键是唯一标识表中每一行的列或列组合，不能包含NULL值，一个表只能有一个主键。"
+    },
+    {
+        "question": "解释MySQL中的JOIN操作",
+        "answer": "JOIN用于基于两个或多个表之间的关联关系组合行。常见类型有INNER JOIN(返回匹配行)、LEFT JOIN(返回左表所有行+匹配右表行)、RIGHT JOIN(返回右表所有行+匹配左表行)和FULL JOIN(返回所有匹配和不匹配行)。"
+    },
+    {
+        "question": "MySQL索引的作用是什么？",
+        "answer": "索引用于快速查找数据，提高查询性能。它类似于书籍的目录，可以加速SELECT查询和WHERE子句的执行，但会减慢INSERT、UPDATE和DELETE操作，因为索引也需要更新。"
+    },
+    {
+        "question": "什么是事务？MySQL如何支持事务？",
+        "answer": "事务是一组原子性的SQL操作，要么全部执行成功，要么全部失败回滚。MySQL通过InnoDB存储引擎支持事务，使用BEGIN/START TRANSACTION开始事务，COMMIT提交事务，ROLLBACK回滚事务。"
+    },
+    {
+        "question": "解释MySQL的存储引擎及其区别",
+        "answer": "MySQL主要存储引擎有：1) InnoDB：支持事务、行级锁和外键，是默认引擎；2) MyISAM：不支持事务和外键，但查询速度快；3) MEMORY：数据存储在内存中，速度快但不持久；4) ARCHIVE：适合存储和检索大量很少引用的数据。"
+    }
+]

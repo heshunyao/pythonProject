@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI 面试助手</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Microsoft YaHei', sans-serif;
+            background-color: #e8f3e8;  /* 更淡的草绿色背景 */
+            display: flex;
+            flex-direction: column;
+            align-items: center;  /* 水平居中 */
+        }
+
+        .page-container {
+            width: 80%;  /* 缩小到原来的80% */
+            max-width: 1600px;  /* 设置最大宽度 */
+            margin: 0 auto;  /* 水平居中 */
+        }
+
+        .nav {
+            width: 100%;  /* 导航栏宽度100% */
+            background-color: #4CAF50;
+            padding: 1rem;
+            color: white;
+            display: flex;
+            justify-content: flex-end;
+        }
+
+        .nav a {
+            color: white;
+            text-decoration: none;
+            margin-left: 1rem;
+        }
+
+        .nav a:hover {
+            color: #e8f3e8;
+        }
+
+        .container {
+            display: flex;
+            padding: 1rem 0;
+            height: auto;
+            min-height: auto;
+        }
+
+        .digital-human {
+            flex: 2.5;
+            background-color: #f5f9f5;
+            padding: 1rem;
+            border-right: 1px solid #b8d5b8;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: flex-start;
+            height: auto;
+        }
+
+        .chat-area {
+            flex: 2;
+            background-color: #f5f9f5;
+            padding: 1rem;
+            display: flex;
+            flex-direction: column;
+            height: auto;
+        }
+
+        .chat-messages {
+            overflow-y: auto;
+            padding: 1rem;
+            background-color: #e8f3e8;
+            border-radius: 8px;
+            margin-bottom: 1rem;
+            border: 1px solid #b8d5b8;
+            height: 300px;
+        }
+
+        .chat-input {
+            display: flex;
+            gap: 1rem;
+            margin-top: 0.5rem;  /* 减小上边距 */
+        }
+
+        .chat-input input {
+            flex: 1;
+            padding: 0.5rem;
+            border: 1px solid #b8d5b8;  /* 淡草绿色边框 */
+            border-radius: 4px;
+            background-color: #fff;
+        }
+
+        .chat-input input:focus {
+            outline: none;
+            border-color: #7ba17b;  /* 柔和的草绿色 */
+        }
+
+        .chat-input button {
+            padding: 0.5rem 1rem;
+            background-color: #4CAF50;  /* 柔和的草绿色按钮 */
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .chat-input button:hover {
+            background-color: #6a906a;  /* 稍深的草绿色 */
+        }
+
+        .digital-human > div {
+            width: 100%;
+            height: 500px;
+            background-color: #e8f3e8;  /* 淡草绿色背景 */
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 1px solid #b8d5b8;  /* 淡草绿色边框 */
+        }
+
+        h2 {
+            color: #5a7a5a;  /* 深草绿色文字 */
+            margin-bottom: 1rem;
+        }
+
+        .footer {
+            width: 100%;
+            background-color: #f5f9f5;
+            padding: 1.5rem 0;
+            margin-top: 1rem;
+            border-top: 1px solid #b8d5b8;
+        }
+
+        .footer-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 2rem;
+        }
+
+        .copyright {
+            color: #5a7a5a;
+            font-size: 0.9rem;
+        }
+
+        .qrcode-section {
+            display: flex;
+            align-items: center;
+            gap: 2rem;
+        }
+
+        .qrcode-item {
+            text-align: center;
+        }
+
+        .qrcode-item img {
+            width: 100px;
+            height: 100px;
+            margin-bottom: 0.5rem;
+            border: 1px solid #b8d5b8;
+            border-radius: 4px;
+            padding: 0.5rem;
+            background-color: white;
+        }
+
+        .qrcode-item p {
+            color: #5a7a5a;
+            font-size: 0.8rem;
+        }
+
+        .container {
+            min-height: calc(100vh - 200px);  /* 调整主容器高度，为底部留出空间 */
+        }
+
+        .voice-btn {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background-color: #4CAF50;
+            border: none;
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .voice-btn:hover {
+            background-color: #45a049;
+        }
+
+        .voice-btn.recording {
+            background-color: #f44336;
+        }
+    </style>
+</head>
+<body>
+    <div class="page-container">
+        <nav class="nav">
+            <a href="/rag">进入聊天室</a>
+        </nav>
+        
+        <div class="container">
+            <div class="digital-human">
+                <div style="width: 100%; height: 400px; background-color: #e8f3e8; border-radius: 8px; display: flex; align-items: center; justify-content: center;">
+                    数字人展示区域
+                </div>
+            </div>
+            
+            <div class="chat-area">
+                <div class="chat-messages">
+                    <!-- 聊天消息将在这里显示 -->
+                </div>
+                <div class="chat-input">
+                    <button class="voice-btn" id="voiceBtn" title="按住说话">
+                        <i class="fas fa-microphone"></i>
+                    </button>
+                    <input type="text" placeholder="请输入您的问题...">
+                    <button>发送</button>
+                </div>
+            </div>
+        </div>
+
+        <footer class="footer">
+            <div class="footer-content">
+                <div class="copyright">
+                    <p>© 2025 AI面试助手 版权所有</p>
+                    <p>技术支持：传一乐程信息科技有限公司</p>
+                </div>
+                <div class="qrcode-section">
+                    <div class="qrcode-item">
+                        <img src="/static/images/qrcode_wechat.png" alt="微信公众号">
+                        <p>微信公众号</p>
+                    </div>
+                    <div class="qrcode-item">
+                        <img src="/static/images/qrcode_app.png" alt="APP下载">
+                        <p>APP下载</p>
+                    </div>
+                </div>
+            </div>
+        </footer>
+    </div>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const voiceBtn = document.getElementById('voiceBtn');
+            let isRecording = false;
+
+            // 按下按钮开始录音
+            voiceBtn.addEventListener('mousedown', function() {
+                isRecording = true;
+                this.classList.add('recording');
+                // 这里添加开始录音的逻辑
+            });
+
+            // 松开按钮结束录音
+            voiceBtn.addEventListener('mouseup', function() {
+                if (isRecording) {
+                    isRecording = false;
+                    this.classList.remove('recording');
+                    // 这里添加结束录音的逻辑
+                }
+            });
+
+            // 鼠标移出按钮时结束录音
+            voiceBtn.addEventListener('mouseleave', function() {
+                if (isRecording) {
+                    isRecording = false;
+                    this.classList.remove('recording');
+                    // 这里添加结束录音的逻辑
+                }
+            });
+
+            // 触摸设备支持
+            voiceBtn.addEventListener('touchstart', function(e) {
+                e.preventDefault();
+                isRecording = true;
+                this.classList.add('recording');
+                // 这里添加开始录音的逻辑
+            });
+
+            voiceBtn.addEventListener('touchend', function(e) {
+                e.preventDefault();
+                if (isRecording) {
+                    isRecording = false;
+                    this.classList.remove('recording');
+                    // 这里添加结束录音的逻辑
+                }
+            });
+        });
+    </script>
+</body>
+</html>

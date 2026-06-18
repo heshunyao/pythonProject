@@ -1,0 +1,434 @@
+[
+  {
+    "role": "system",
+    "content": "Java 中的内存模型（JMM）是什么？"
+  },
+  {
+    "role": "system",
+    "content": "什么是反射机制？请举例说明。"
+  },
+  {
+    "role": "system",
+    "content": "Java 中的 HashMap 和 ConcurrentHashMap 有什么区别？"
+  },
+  {
+    "role": "system",
+    "content": "什么是类加载器？"
+  },
+  {
+    "role": "system",
+    "content": "Java 如何实现多线程通信？"
+  },
+  {
+    "role": "system",
+    "content": "什么是线程安全？如何实现线程安全？"
+  },
+  {
+    "role": "system",
+    "content": "Java 中的 volatile 关键字作用是什么？"
+  },
+  {
+    "role": "system",
+    "content": "synchronized 和 ReentrantLock 有什么区别？"
+  },
+  {
+    "role": "system",
+    "content": "什么是线程死锁？如何避免？"
+  },
+  {
+    "role": "system",
+    "content": "什么是线程饥饿与活锁？"
+  },
+  {
+    "role": "system",
+    "content": "Java 中的 finalize 方法有什么作用？"
+  },
+  {
+    "role": "system",
+    "content": "Java 中如何实现序列化？"
+  },
+  {
+    "role": "system",
+    "content": "什么是 JVM？它的主要组成部分有哪些？"
+  },
+  {
+    "role": "system",
+    "content": "Java 中的异常处理机制是什么？"
+  },
+  {
+    "role": "system",
+    "content": "受检异常和非受检异常的区别？"
+  },
+  {
+    "role": "system",
+    "content": "什么是垃圾回收？Java 中垃圾回收器有哪些？"
+  },
+  {
+    "role": "system",
+    "content": "Java 中接口和抽象类的区别？"
+  },
+  {
+    "role": "system",
+    "content": "重载（Overload）与重写（Override）的区别是什么？"
+  },
+  {
+    "role": "system",
+    "content": "Java 中的 equals 和 == 有什么区别？"
+  },
+  {
+    "role": "system",
+    "content": "hashCode 的作用是什么？如何与 equals 配合使用？"
+  },
+  {
+    "role": "system",
+    "content": "Java 中的集合框架有哪些？"
+  },
+  {
+    "role": "system",
+    "content": "ArrayList 和 LinkedList 的区别？"
+  },
+  {
+    "role": "system",
+    "content": "HashMap 的底层实现原理是什么？"
+  },
+  {
+    "role": "system",
+    "content": "Java 中的 TreeMap 是如何排序的？"
+  },
+  {
+    "role": "system",
+    "content": "ConcurrentHashMap 如何保证线程安全？"
+  },
+  {
+    "role": "system",
+    "content": "什么是线程池？Java 如何创建线程池？"
+  },
+  {
+    "role": "system",
+    "content": "Java 中的 Future 和 Callable 有什么用？"
+  },
+  {
+    "role": "system",
+    "content": "什么是 lambda 表达式？它的作用是什么？"
+  },
+  {
+    "role": "system",
+    "content": "Java Stream API 的常用操作有哪些？"
+  },
+  {
+    "role": "system",
+    "content": "Optional 的作用是什么？"
+  },
+  {
+    "role": "system",
+    "content": "Java 中的注解是什么？如何自定义注解？"
+  },
+  {
+    "role": "system",
+    "content": "反射中如何调用私有方法？"
+  },
+  {
+    "role": "system",
+    "content": "Java 的访问修饰符有哪些？"
+  },
+  {
+    "role": "system",
+    "content": "什么是内部类？有哪些类型？"
+  },
+  {
+    "role": "system",
+    "content": "什么是静态内部类？"
+  },
+  {
+    "role": "system",
+    "content": "静态方法能否访问非静态变量？为什么？"
+  },
+  {
+    "role": "system",
+    "content": "Java 中 static、final、this、super 的区别？"
+  },
+  {
+    "role": "system",
+    "content": "什么是构造代码块与静态代码块？"
+  },
+  {
+    "role": "system",
+    "content": "Java 中如何实现单例模式？"
+  },
+  {
+    "role": "system",
+    "content": "Java 中的设计模式有哪些常见类型？"
+  },
+  {
+    "role": "system",
+    "content": "什么是工厂模式？"
+  },
+  {
+    "role": "system",
+    "content": "什么是观察者模式？"
+  },
+  {
+    "role": "system",
+    "content": "什么是责任链模式？"
+  },
+  {
+    "role": "system",
+    "content": "Java 中的动态代理是怎么实现的？"
+  },
+  {
+    "role": "system",
+    "content": "什么是 AOP？Java 如何实现？"
+  },
+  {
+    "role": "system",
+    "content": "Java 中的序列化 ID 是做什么的？"
+  },
+  {
+    "role": "system",
+    "content": "String 和 StringBuilder、StringBuffer 区别？"
+  },
+  {
+    "role": "system",
+    "content": "Java 中如何处理大文件读写？"
+  },
+  {
+    "role": "system",
+    "content": "什么是 NIO？与 IO 有什么区别？"
+  },
+  {
+    "role": "system",
+    "content": "Java 中的 File 类和 Path 类有何区别？"
+  },
+  {
+    "role": "system",
+    "content": "什么是 Java 中的泛型？"
+  },
+  {
+    "role": "system",
+    "content": "如何限制泛型的上下边界？"
+  },
+  {
+    "role": "system",
+    "content": "泛型擦除是怎么回事？"
+  },
+  {
+    "role": "system",
+    "content": "什么是协变与逆变？"
+  },
+  {
+    "role": "system",
+    "content": "Java 中的 Comparable 和 Comparator 有什么区别？"
+  },
+  {
+    "role": "system",
+    "content": "如何进行线程间的数据共享？"
+  },
+  {
+    "role": "system",
+    "content": "Thread 和 Runnable 的区别？"
+  },
+  {
+    "role": "system",
+    "content": "线程的生命周期是什么？"
+  },
+  {
+    "role": "system",
+    "content": "什么是守护线程？"
+  },
+  {
+    "role": "system",
+    "content": "Java 中的 CountDownLatch 和 CyclicBarrier 区别？"
+  },
+  {
+    "role": "system",
+    "content": "什么是信号量 Semaphore？"
+  },
+  {
+    "role": "system",
+    "content": "Java 如何阻止线程中断？"
+  },
+  {
+    "role": "system",
+    "content": "ThreadLocal 的原理是什么？"
+  },
+  {
+    "role": "system",
+    "content": "Java 如何处理内存泄漏？"
+  },
+  {
+    "role": "system",
+    "content": "如何监控 Java 应用的性能？"
+  },
+  {
+    "role": "system",
+    "content": "Java 中如何进行代码热更新？"
+  },
+  {
+    "role": "system",
+    "content": "什么是 JIT 编译器？"
+  },
+  {
+    "role": "system",
+    "content": "Java 类加载机制有哪几种方式？"
+  },
+  {
+    "role": "system",
+    "content": "双亲委派模型是什么？"
+  },
+  {
+    "role": "system",
+    "content": "Java 中的 SPI 是什么？"
+  },
+  {
+    "role": "system",
+    "content": "Java 中如何使用反射创建对象？"
+  },
+  {
+    "role": "system",
+    "content": "Java 如何与数据库连接？"
+  },
+  {
+    "role": "system",
+    "content": "JDBC 中常用的 API 有哪些？"
+  },
+  {
+    "role": "system",
+    "content": "如何防止 SQL 注入？"
+  },
+  {
+    "role": "system",
+    "content": "MyBatis 和 Hibernate 的区别？"
+  },
+  {
+    "role": "system",
+    "content": "Java Web 开发常用的技术栈有哪些？"
+  },
+  {
+    "role": "system",
+    "content": "Servlet 生命周期是什么？"
+  },
+  {
+    "role": "system",
+    "content": "Filter 和 Listener 有什么区别？"
+  },
+  {
+    "role": "system",
+    "content": "Session 和 Cookie 的区别？"
+  },
+  {
+    "role": "system",
+    "content": "Spring 框架的核心组件有哪些？"
+  },
+  {
+    "role": "system",
+    "content": "Spring Bean 的作用域有哪些？"
+  },
+  {
+    "role": "system",
+    "content": "Spring 中的 AOP 是如何实现的？"
+  },
+  {
+    "role": "system",
+    "content": "Spring Boot 与 Spring 的区别？"
+  },
+  {
+    "role": "system",
+    "content": "Spring Boot 中如何实现配置管理？"
+  },
+  {
+    "role": "system",
+    "content": "Spring Boot 如何实现定时任务？"
+  },
+  {
+    "role": "system",
+    "content": "Spring 中的事务管理是如何工作的？"
+  },
+  {
+    "role": "system",
+    "content": "Java 中如何实现 RESTful 接口？"
+  },
+  {
+    "role": "system",
+    "content": "如何进行接口版本管理？"
+  },
+  {
+    "role": "system",
+    "content": "Java 中的 WebSocket 是如何实现的？"
+  },
+  {
+    "role": "system",
+    "content": "Java 项目的常见打包方式？"
+  },
+  {
+    "role": "system",
+    "content": "Maven 和 Gradle 的区别？"
+  },
+  {
+    "role": "system",
+    "content": "Java 中的日志框架有哪些？"
+  },
+  {
+    "role": "system",
+    "content": "如何配置 Logback？"
+  },
+  {
+    "role": "system",
+    "content": "Java 项目中常用的测试框架？"
+  },
+  {
+    "role": "system",
+    "content": "JUnit 和 TestNG 的区别？"
+  },
+  {
+    "role": "system",
+    "content": "如何进行单元测试和集成测试？"
+  },
+  {
+    "role": "system",
+    "content": "如何进行接口自动化测试？"
+  },
+  {
+    "role": "system",
+    "content": "Java 中的安全机制有哪些？"
+  },
+  {
+    "role": "system",
+    "content": "如何加密和解密数据？"
+  },
+  {
+    "role": "system",
+    "content": "Java 中的 SSL 和 TLS 是什么？"
+  },
+  {
+    "role": "system",
+    "content": "如何防止 XSS 和 CSRF 攻击？"
+  },
+  {
+    "role": "system",
+    "content": "Java 中如何调用本地代码？"
+  },
+  {
+    "role": "system",
+    "content": "什么是 JNI？"
+  },
+  {
+    "role": "system",
+    "content": "如何使用 Java 操作 Redis？"
+  },
+  {
+    "role": "system",
+    "content": "Java 与消息队列（如 Kafka、RabbitMQ）如何集成？"
+  },
+  {
+    "role": "system",
+    "content": "Java 中的微服务框架有哪些？"
+  },
+  {
+    "role": "system",
+    "content": "Spring Cloud 的核心组件有哪些？"
+  },
+  {
+    "role": "system",
+    "content": "Java 如何进行服务注册与发现？"
+  }
+]
