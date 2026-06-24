@@ -11,7 +11,7 @@ headers = {
 payload = {
     "model": "agnes-image-2.1-flash",
     "prompt": "一只在太空漫步的柴犬，穿着宇航服，背景是绚丽的星云",
-    "ratio": "16:9"
+    "n":1
 }
 
 response = requests.post(url, headers=headers, json=payload)
